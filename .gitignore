@@ -33,3 +33,7 @@
 
 # Meson
 build/
+
+# IDE Files
+.idea/
+.vscode/
