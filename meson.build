@@ -10,6 +10,7 @@ sfml_proj = cmake.subproject('sfml')
 
 slotmap_includes = include_directories('subprojects/slotmap')
 graphics_includes = include_directories('include/graphics')
+gameplay_includes = include_directories('include/gameplay')
 
 asset_files = files(
   'assets/king_white.png',
@@ -27,6 +28,7 @@ asset_files = files(
 )
 
 subdir('src/util')
+subdir('src/gameplay')
 subdir('src/graphics')
 
 exe = executable('cxxess',
