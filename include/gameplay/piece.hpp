@@ -30,8 +30,8 @@ namespace cxxess::gameplay {
       Piece(Color color, Type type);
 
     public:
-      Color get_color();
-      Type get_type();
+      Color get_color() const;
+      Type get_type() const;
       bool is_playable();
 
   };
