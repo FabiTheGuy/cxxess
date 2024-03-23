@@ -25,9 +25,6 @@ namespace cxxess::gameplay {
     public:
       std::string to_string();
 
-    public:
-      std::string to_string();
-
   };
 
 };

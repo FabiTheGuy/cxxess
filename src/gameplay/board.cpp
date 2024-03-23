@@ -1,5 +1,6 @@
 #include "../../include/gameplay/board.hpp"
 #include "../../include/gameplay/piece.hpp"
+
 #include <string>
 
 
@@ -145,37 +146,6 @@ bool Board::move(std::uint8_t from_x, std::uint8_t from_y, std::uint8_t to_x, st
       break;
   }
   return false;
-}
-
-std::string Board::to_string() {
-  constexpr char NEW_LINE = '\n';
-  constexpr char EMPTY_PIECE[5] = "    ";
-  std::string result;
-
-  for (std::uint8_t y = 0; y < BOARD_HEIGHT; y++) {
-    for (std::uint8_t x = 0; x < BOARD_WIDTH; x++) {
-      Piece piece = this->board[y][x];
-
-      if (!piece.is_playable()) {
-        result += EMPTY_PIECE;
-        continue;
-      }
-
-      result += (piece.get_color() == BLACK) ? " b" : " w";
-      switch (piece.get_type()) {
-        case KING: { result += "K "; break; }
-        case QUEEN: { result += "Q "; break; }
-        case ROOK: { result += "R "; break; }
-        case BISHOP: { result += "B "; break; }
-        case KNIGHT: { result += "k "; break; }
-        case PAWN: { result += "P "; break; }        
-      }
-    }
-
-    result += NEW_LINE;
-  }
-
-  return result;
 }
 
 std::string Board::to_string() {
