@@ -3,6 +3,11 @@
 
 namespace cxxess::gameplay {
 
+struct BoardPos {
+   unsigned int x;
+   unsigned int y;
+};
+
   enum Color {
     BLACK,
     WHITE,
