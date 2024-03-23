@@ -8,7 +8,26 @@ cmake = import('cmake')
 
 sfml_proj = cmake.subproject('sfml')
 
-sfml_dep = sfml_proj.dependency('sfml-graphics')
+slotmap_includes = include_directories('subprojects/slotmap')
+graphics_includes = include_directories('include/graphics')
+
+asset_files = files(
+  'assets/king_white.png',
+  'assets/queen_white.png',
+  'assets/bishop_white.png',
+  'assets/knight_white.png',
+  'assets/rook_white.png',
+  'assets/pawn_white.png',
+  'assets/king_black.png',
+  'assets/queen_black.png',
+  'assets/bishop_black.png',
+  'assets/knight_black.png',
+  'assets/rook_black.png',
+  'assets/pawn_black.png',
+)
+
+subdir('src/util')
+subdir('src/graphics')
 
 exe = executable('cxxess',
   ['src/main.cpp', 'src/gameplay/board.cpp', 'src/gameplay/piece.cpp'],
