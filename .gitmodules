@@ -1,3 +1,6 @@
 [submodule "subprojects/sfml"]
 	path = subprojects/sfml
 	url = https://github.com/SFML/SFML.git
+[submodule "subprojects/slotmap"]
+	path = subprojects/slotmap
+	url = https://github.com/pixelcluster/slotmap
