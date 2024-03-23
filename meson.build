@@ -8,7 +8,7 @@ cmake = import('cmake')
 
 sfml_proj = cmake.subproject('sfml')
 
-sfml_dep = sfml_proj.dependency('sfml')
+sfml_dep = sfml_proj.dependency('sfml-graphics')
 
 exe = executable('cxxess',
   ['src/main.cpp'],
