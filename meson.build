@@ -7,6 +7,11 @@ project('cxxess',
 cmake = import('cmake')
 
 sfml_proj = cmake.subproject('sfml')
+sfml_graphics_dep = sfml_proj.dependency('sfml-graphics')
+sfml_sys_dep = sfml_proj.dependency('sfml-system')
+sfml_window_dep = sfml_proj.dependency('sfml-window')
+
+sfml_dep = declare_dependency(dependencies: [sfml_graphics_dep, sfml_sys_dep, sfml_window_dep])
 
 slotmap_includes = include_directories('subprojects/slotmap')
 graphics_includes = include_directories('include/graphics')
@@ -33,7 +38,7 @@ subdir('src/graphics')
 
 exe = executable('cxxess',
   ['src/main.cpp', 'src/gameplay/board.cpp', 'src/gameplay/piece.cpp'],
-  dependencies: [ sfml_dep ],
+  dependencies: [ graphics_dep ],
   include_directories : include_directories('include/'),
   install : true)
 
