@@ -1,0 +1,26 @@
+
+ContinuationIndentWidth: 3
+IndentWidth: 3
+ColumnLimit: 120
+
+Language: Cpp
+Standard: c++20
+
+DerivePointerAlignment: false
+PointerAlignment: Left
+
+SpaceBeforeCtorInitializerColon: True
+AllowShortCaseLabelsOnASingleLine: True
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortBlocksOnASingleLine: Empty
+AllowShortLambdasOnASingleLine: All
+
+BraceWrapping:
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: true
+  AfterStruct: false
+  BeforeElse: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  BeforeLambdaBody: true
