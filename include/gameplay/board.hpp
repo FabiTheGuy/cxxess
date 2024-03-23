@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <string>
 
 #include "piece.hpp"
 
@@ -17,6 +18,9 @@ namespace cxxess::gameplay {
 
     public:
       Board();
+
+    public:
+      std::string to_string();
 
   };
 
