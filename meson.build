@@ -11,7 +11,7 @@ sfml_proj = cmake.subproject('sfml')
 sfml_dep = sfml_proj.dependency('sfml-graphics')
 
 exe = executable('cxxess',
-  ['src/main.cpp'],
+  ['src/main.cpp', 'src/gameplay/board.cpp', 'src/gameplay/piece.cpp'],
   dependencies: [ sfml_dep ],
   include_directories : include_directories('include/'),
   install : true)
