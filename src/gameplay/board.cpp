@@ -1,8 +1,6 @@
 #include "../../include/gameplay/board.hpp"
 #include "../../include/gameplay/piece.hpp"
 
-#include <string>
-
 
 using namespace cxxess::gameplay;
 
@@ -34,12 +32,11 @@ Board::Board() {
 }
 
 bool Board::move(std::uint8_t from_x, std::uint8_t from_y, std::uint8_t to_x, std::uint8_t to_y) {
+  if (to_x >= BOARD_WIDTH || to_y >= BOARD_HEIGHT || (to_x == from_x && to_y == from_y)) {
+    return false;
+  }
   switch (this->board[from_y][from_x].get_type()) {
-    if (to_x >= BOARD_WIDTH || to_y >= BOARD_HEIGHT || (to_x == from_x && to_y == from_y)) {
-        return false;
-    }
-
-    case KING:
+    case KING: {
       /* if the king and the rook hasn't moved
           the king can castle
          the king can move to any field around him
@@ -56,9 +53,11 @@ bool Board::move(std::uint8_t from_x, std::uint8_t from_y, std::uint8_t to_x, st
         }
       }
       break;
-    case QUEEN:
+    }
+    case QUEEN: {
       break;
-    case ROOK:
+    }
+    case ROOK: {
       if(to_x != from_x && to_y != from_y) {
         return false;
       }
@@ -97,7 +96,8 @@ bool Board::move(std::uint8_t from_x, std::uint8_t from_y, std::uint8_t to_x, st
       }
 
       break;
-    case BISHOP:
+    }
+    case BISHOP: {
       if (to_x == from_x || to_y == from_y) {
         return false;
       }
@@ -123,7 +123,8 @@ bool Board::move(std::uint8_t from_x, std::uint8_t from_y, std::uint8_t to_x, st
       }
 
       break;
-    case KNIGHT:
+    }
+    case KNIGHT: {
       uint8_t x_diff = abs((int8_t)to_x - (int8_t)from_x);
       uint8_t y_diff = abs((int8_t)to_y - (int8_t)from_y);
       if ((x_diff == 1 && y_diff == 2) || (x_diff == 2 && y_diff == 1)) {
@@ -134,7 +135,8 @@ bool Board::move(std::uint8_t from_x, std::uint8_t from_y, std::uint8_t to_x, st
         }
       }
       break;
-    case PAWN:
+    }
+    case PAWN: {
       /* pawns can only move in one direction, so each color has
           a different movement direction
          only on first move they can move 2 steps
@@ -144,8 +146,42 @@ bool Board::move(std::uint8_t from_x, std::uint8_t from_y, std::uint8_t to_x, st
           any other piece type
       */
       break;
+    }
+    default:
+      return false;
   }
   return false;
+}
+
+std::string Board::to_string() {
+  constexpr char NEW_LINE = '\n';
+  constexpr char EMPTY_PIECE[5] = "    ";
+  std::string result;
+
+  for (std::uint8_t y = 0; y < BOARD_HEIGHT; y++) {
+    for (std::uint8_t x = 0; x < BOARD_WIDTH; x++) {
+      Piece piece = this->board[y][x];
+
+      if (!piece.is_playable()) {
+        result += EMPTY_PIECE;
+        continue;
+      }
+
+      result += (piece.get_color() == BLACK) ? " b" : " w";
+      switch (piece.get_type()) {
+        case KING: { result += "K "; break; }
+        case QUEEN: { result += "Q "; break; }
+        case ROOK: { result += "R "; break; }
+        case BISHOP: { result += "B "; break; }
+        case KNIGHT: { result += "k "; break; }
+        case PAWN: { result += "P "; break; }        
+      }
+    }
+
+    result += NEW_LINE;
+  }
+
+  return result;
 }
 
 std::string Board::to_string() {
